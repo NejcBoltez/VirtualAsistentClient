@@ -6,7 +6,11 @@ import pyttsx3 as pyttsx
 
 def speak(test):
     speech_engine = pyttsx.init()
+    voices = speech_engine.getProperty('voices')
     besedilo=test
+    speech_engine.setProperty('rate',150)
+    speech_engine.setProperty('voice',voices[14].id)
+    speech_engine.setProperty('pitch', 0.8)
     speech_engine.say(besedilo)
     speech_engine.runAndWait()
 
