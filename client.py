@@ -4,9 +4,9 @@ from os import system
 import webbrowser
 import pyttsx3 as pyttsx
 
-def speak():
+def speak(test):
     speech_engine = pyttsx.init()
-    besedilo="How are you"
+    besedilo=test
     speech_engine.say(besedilo)
     speech_engine.runAndWait()
 
