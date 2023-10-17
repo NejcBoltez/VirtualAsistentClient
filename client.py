@@ -1,6 +1,5 @@
 import requests
 import json
-from os import system
 import webbrowser
 import pyttsx3 as pyttsx
 import speech_recognition as sr
