@@ -43,6 +43,8 @@ while(True):
 
     if (listenForCommand):
         speak(json.loads(resPost.content.decode())['answer'])
+        listenForCommand = False
 
     if ("JAMES" in command.upper()):
         listenForCommand = True
+        speak("Hi, Sir")
