@@ -35,14 +35,14 @@ def speak(test):
     speech_engine.setProperty('pitch', 0.8)
     speech_engine.say(besedilo)
     speech_engine.runAndWait()
+while(True):
+    if (isDashboard):
+        webbrowser.open_new('http://192.168.64.55:8000/dashboard')
+    command = listen()
+    resPost = requests.post('http://192.168.64.55:1234/sendCommand', params = {'command' : command})
 
-if (isDashboard):
-    webbrowser.open_new('http://192.168.64.55:8000/dashboard')
-command = listen()
-resPost = requests.post('http://192.168.64.55:1234/sendCommand', params = {'command' : command})
+    if (listenForCommand):
+        speak(json.loads(resPost.content.decode())['answer'])
 
-if (listenForCommand):
-    speak(json.loads(resPost.content.decode())['answer'])
-
-if ("JAMES" in upper(command)):
-    listenForCommand = True
+    if ("JAMES" in upper(command)):
+        listenForCommand = True
