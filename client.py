@@ -36,15 +36,18 @@ def speak(test):
     speech_engine.say(besedilo)
     speech_engine.runAndWait()
 while(True):
-    if (isDashboard):
-        webbrowser.open_new('http://192.168.64.55:8000/dashboard')
-    command = listen()
-    resPost = requests.post('http://192.168.64.55:1234/sendCommand', params = {'command' : command})
+    try:
+        if (isDashboard):
+            webbrowser.open_new('http://192.168.64.55:8000/dashboard')
+        command = listen()
+        resPost = requests.post('http://192.168.64.55:1234/sendCommand', params = {'command' : command})
 
-    if (listenForCommand):
-        speak(json.loads(resPost.content.decode())['answer'])
-        listenForCommand = False
+        if (listenForCommand):
+            speak(json.loads(resPost.content.decode())['answer'])
+            listenForCommand = False
 
-    if ("JAMES" in command.upper()):
-        listenForCommand = True
-        speak("Hi, Sir")
+        if ("JAMES" in command.upper()):
+            listenForCommand = True
+            speak("Hi, Sir")
+    except Exception as e:
+        print("Exception occured: "+e)
